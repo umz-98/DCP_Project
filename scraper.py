@@ -12,6 +12,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 
 
+
 class Scraper:
     def __init__(self, url: str = 'https://www.jdsports.co.uk'):
         self.driver = Chrome(ChromeDriverManager().install())
@@ -46,6 +47,7 @@ class Scraper:
     def product_container(self, xpath: str = '//div[@id="productListRightContainer"]'):
         return self.driver.find_element(By.XPATH,xpath)
                 
+
     
     # bellow next button code
     def next_button(self, xpath: str = '//a[@rel="next"]'):
