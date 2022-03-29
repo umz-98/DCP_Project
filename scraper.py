@@ -1,4 +1,5 @@
 from lib2to3.pgen2 import driver
+from logging import exception
 from time import time
 from typing_extensions import Self
 from selenium.webdriver import Chrome
@@ -8,6 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
+import time
 
 
 class Scraper:
@@ -33,6 +35,7 @@ class Scraper:
     def keys_search(self, text):
         find_bar = self.find_search()
         if find_bar:
+            time.sleep(1)
             find_bar.send_keys(text)
             find_bar.send_keys(Keys.ENTER)
             find_bar = True
@@ -40,17 +43,26 @@ class Scraper:
            self.driver.execute_script("window.scrollTo(0,1000)")     
         else:
              raise Exception('Not working')
-    # bellow next button code doesnt click but identifies it
-    def next_button(self, xpath: str = '//a[@rel="next"'):
+    def product_container(self, xpath: str = '//div[@id="productListRightContainer"]'):
+        return self.driver.find_element(By.XPATH,xpath)
+                
+    
+    # bellow next button code
+    def next_button(self, xpath: str = '//a[@rel="next"]'):
         try:
             find_next_button = WebDriverWait(self.driver, 12).until(EC.presence_of_element_located((By.XPATH,xpath)))
             find_next_button.click()
             return find_next_button
         except TimeoutException:
             print ('No next button found')
-    # bellow is for the filterting but doesnt click yet just identifies it
-    def filter_m(sef, xpath: str = '//a[@class="filterlink"]'):
+    #  bellow working on 'gender' filter but only the link is different
+    # def filter_men(self, xpath):
+    
+    
+    # bellow is for filterting by size 'm' but probabaly has the same issue as above
+    def filter_m(self, xpath: str = '//a[@class="filterlink"]'):
         try:
+            time.sleep(1)
             filter_search = WebDriverWait(self.driver, 6).until(EC.presence_of_element_located((By.XPATH,xpath)))
             filter_search.click()
             return filter_search
@@ -63,4 +75,6 @@ class Scraper:
 if __name__ == '__main__':
     bot = Scraper()
     bot.accept_cookies()
-    bot.find_search()        
+    bot.next_button()
+    bot.find_search()
+    bot.product_container()        
