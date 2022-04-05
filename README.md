@@ -1,6 +1,6 @@
 # Data collection pipeline project
 
-## Milestone 1 - (Make sure to include your reasoning for choosing your website, the technologies you've used etc.)
+## Milestone 1-2 - (Make sure to include your reasoning for choosing your website, the technologies you've used etc.)
 
 - In this millstone a scraper class was created which includes the necessary methods to navigate the website such as: accept cookies and search. Furthermore, the scraper class also includes additional methods that could be of use e.g. scrolling the webpage and going to next webpage on a product list.
 
@@ -15,3 +15,37 @@
 ```python
 """pd.DataFrame()"""
 ```
+## Milestone 3 (Talk about the methods you have added and the reasoning behind your approach.)
+
+-Now that the navigation of the website was achieved through the previous milestone, the tasks in this milestone followed on.  Firstly, the ID of each product was located and its path was noted than the UUID library was used to generate UUID’s using the code below:
+	
+```python
+"""uuid.uuid4()"""
+```
+
+### Dictionary and json_file
+
+-Relevant details of the product were located and their xpaths were noted. Following this all the information was collected into a dictionary. Whilst not necessary pandas were used to visualize the dictionary for it to be more user-friendly.
+
+-The dictionary created had to be saved in a json file, however the UUID had to be encoded to be saved. Therefore, the following final code was used to save the file:
+	
+```python
+"""import json
+from uuid import UUID
+
+class UUIDEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, UUID):
+            return obj.hex
+        return json.JSONEncoder.default(self, obj)
+j = json.dumps(property_dict, cls=UUIDEncoder, indent=4)
+f = open('data.json', 'w')
+print(j, file=f)
+f.close()"""
+```
+
+### Image links
+
+-The URLIB library was implemented to download the images. However during the process a forbidden error was encountered therefore ‘headers’ were used which sorted out the problem. 
+	
+
