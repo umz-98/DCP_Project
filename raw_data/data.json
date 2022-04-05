@@ -2,36 +2,36 @@
     "link": [
         "https://www.jdsports.co.uk/product/grey-nike-heritage-86-swoosh-cap/16474497/",
         "https://www.jdsports.co.uk/product/green-nike-sportswear-heritage86-cap/16453825/",
-        "https://www.jdsports.co.uk/product/orange-nike-heritage-86-swoosh-cap/16450304/",
         "https://www.jdsports.co.uk/product/black-nike-sportswear-classic-99-trucker-cap/16253171/",
-        "https://www.jdsports.co.uk/product/black-nike-heritage86-cap-womens/16154660/"
+        "https://www.jdsports.co.uk/product/black-nike-heritage86-cap-womens/16154660/",
+        "https://www.jdsports.co.uk/product/black-nike-l91-futura-cap/16069344/"
     ],
     "price": [
         "\u00a315.00",
         "\u00a325.00",
-        "\u00a315.00",
         "\u00a325.00",
+        "\u00a323.00",
         "\u00a323.00"
     ],
     "name": [
         "Nike Heritage '86 Swoosh Cap",
         "Nike Sportswear Heritage86 Cap",
-        "Nike Heritage '86 Swoosh Cap",
         "Nike Sportswear Classic 99 Trucker Cap",
-        "Nike Heritage86 Cap Women's"
+        "Nike Heritage86 Cap Women's",
+        "Nike L91 Futura Cap"
     ],
     "id": [
         "Product Code: 16474497/474027",
         "Product Code: 16453825/474048",
-        "Product Code: 16450304/474030",
         "Product Code: 16253171/506339",
-        "Product Code: 16154660/506521"
+        "Product Code: 16154660/506521",
+        "Product Code: 16069344/393535"
     ],
     "UUID": [
-        "bf63a3309a144f5194b33403aaa550d6",
-        "e962ddcb5fc741709f3900fdec55991f",
-        "492bd370ec614a1da8c65b2f7985f576",
-        "2705d4ac4b1747a78a835850ae702cf9",
-        "b02e288113e04f32aad7bda8df2989f8"
+        "473976a253554202866a3df7482613fa",
+        "0b4b4d0870ba4abdb58384b19c33ffa5",
+        "9d10e92752344fdf8c4d53959984c788",
+        "28f77724bab74200a06d982057721e3f",
+        "d590ad07f2e049c88fef29d01e15e240"
     ]
 }
