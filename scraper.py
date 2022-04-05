@@ -12,9 +12,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
 import time
-import requests
-import urllib
-import urllib.request
 from typing import Union, Optional
 
 
@@ -65,8 +62,7 @@ class Scraper:
         Returns
         -------
         Union[webdriver.element, None]
-        keys_search:
-             Once the search bar is located it searches the website using keys    
+
         '''
         try:
             find_bar = WebDriverWait(self.driver, 6).until(EC.presence_of_element_located((By.XPATH,xpath)))
@@ -99,20 +95,29 @@ class Scraper:
         return self.driver.find_element(By.XPATH,xpath)
 
 
-    
     # bellow next button code
-    def next_button(self, xpath: str = '//a[@rel="next"]'):
+    def next_button(self, xpath: str = '//a[@rel="next"]') -> Optional[webdriver.element]:
+        '''
+        This method goes to the next page of a product list
+
+        parameters
+        ----------
+        xpath: str
+            The xpath of locating the next button
+
+        Returns    
+        -------
+        Optional[webdriver.element]
+
+        '''
         try:
             find_next_button = WebDriverWait(self.driver, 12).until(EC.presence_of_element_located((By.XPATH,xpath)))
             find_next_button.click()
             return find_next_button
         except TimeoutException:
             print ('No next button found')
-    #  bellow working on 'gender' filter but only the link is different
-    # def filter_men(self, xpath):
     
-    
-    # bellow is for filterting by size 'm' but probabaly has the same issue as above
+    # bellow is for filterting by size 'm' but probabaly has the same issue as gender one
     def filter_m(self, xpath: str = '//a[@class="filterlink"]'):
         try:
             time.sleep(1)
