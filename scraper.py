@@ -2,6 +2,8 @@ from lib2to3.pgen2 import driver
 from logging import exception
 from time import time
 from typing_extensions import Self
+from urllib import request
+from selenium import webdriver
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -10,22 +12,62 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
 import time
+import requests
+import urllib
+import urllib.request
+from typing import Union, Optional
 
 
 
 class Scraper:
+    '''
+    This class defines a scraper that can be used to browse and navigate websites
+
+    parameters
+    ----------
+    url: str
+        The webpage that we are trying to visit
+    
+    Attribute
+    ---------  
+    driver:
+        This driver is the webdriver object
+    '''
     def __init__(self, url: str = 'https://www.jdsports.co.uk'):
         self.driver = Chrome(ChromeDriverManager().install())
         self.driver.get(url)
         # self.driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
     
     def accept_cookies(self, xpath: str = '//button[@class="btn btn-level1 accept-all-cookies"]'):
+        '''
+        This method allows the 'accept cookies' button to be pressed
+        
+        parameters
+        ----------
+        xpath: str
+            The xpath of locating the accept cookies button
+        '''
         try:
-            WebDriverWait(self.driver, 12).until(EC.presence_of_all_elements_located((By.XPATH,xpath)))
+            (WebDriverWait(self.driver, 12)
+                .until(EC.presence_of_all_elements_located((By.XPATH,xpath))))
             self.driver.find_element(By.XPATH,xpath).click()
         except TimeoutException:
             print ('No cookies found')
-    def find_search(self, xpath: str = '//input[@type="text"]'):
+    def find_search(self, xpath: str = '//input[@type="text"]') -> Union[webdriver.element, None]:
+        '''
+        This method locates the search bar
+        
+        parameters
+        ----------
+        xpath: str
+             The xpath of locating the search bar
+
+        Returns
+        -------
+        Union[webdriver.element, None]
+        keys_search:
+             Once the search bar is located it searches the website using keys    
+        '''
         try:
             find_bar = WebDriverWait(self.driver, 6).until(EC.presence_of_element_located((By.XPATH,xpath)))
             find_bar.click()
@@ -33,7 +75,16 @@ class Scraper:
         except TimeoutException:
             print ('No search found')
             return None
-    def keys_search(self, text):
+    def keys_search(self, text:str) -> None:
+        '''
+        This method searches the webpage using whatevever keys
+
+        parameters
+        ----------
+        text: str
+             The text that is going to be searched for and also scrolls the page
+  
+        '''
         find_bar = self.find_search()
         if find_bar:
             time.sleep(1)
@@ -46,7 +97,7 @@ class Scraper:
              raise Exception('Not working')
     def product_container(self, xpath: str = '//div[@id="productListRightContainer"]'):
         return self.driver.find_element(By.XPATH,xpath)
-                
+
 
     
     # bellow next button code
