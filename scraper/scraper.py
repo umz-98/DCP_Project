@@ -50,7 +50,8 @@ class Scraper:
             self.driver.find_element(By.XPATH,xpath).click()
         except TimeoutException:
             print ('No cookies found')
-    def find_search(self, xpath: str = '//input[@type="text"]') -> Union[webdriver.element, None]:
+    def find_search(self, xpath: str = '//input[@type="text"]'): 
+         # -> Union[webdriver.element, None]
         '''
         This method locates the search bar
         
@@ -96,7 +97,8 @@ class Scraper:
 
 
     # bellow next button code
-    def next_button(self, xpath: str = '//a[@rel="next"]') -> Optional[webdriver.element]:
+    def next_button(self, xpath: str = '//a[@rel="next"]'):
+        # -> Optional[webdriver.element]
         '''
         This method goes to the next page of a product list
 
