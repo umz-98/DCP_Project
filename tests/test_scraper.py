@@ -9,6 +9,10 @@ class testScraper(unittest.TestCase):
     def test_accept_cookies(self):
         self.bot.accept_cookies(xpath = '//button[@class="btn btn-level1 accept-all-cookies"]')
         self.bot.driver.find_element(By.XPATH, '//a[@class="logo"]' )
+
+    def test_find_bar(self):
+        self.bot.accept_cookies(xpath = '//button[@class="btn btn-level1 accept-all-cookies"]')
+        self.bot.find_search(xpath= '//input[@type="text"]').click()
     
     def test_properties(self):
         self.bot.accept_cookies(xpath = '//button[@class="btn btn-level1 accept-all-cookies"]')
@@ -25,8 +29,6 @@ class testScraper(unittest.TestCase):
     #     return super().tearDown()    
     # def test_init(self):
     #     pass
-
-
 
 if __name__ == '__main__':
     unittest.main()    
