@@ -47,5 +47,39 @@ f.close()"""
 ### Image links
 
 -The URLIB library was implemented to download the images. However during the process a forbidden error was encountered therefore ‘headers’ were used which sorted out the problem. 
+
+## Milestone 4
+
+-In this milestone it was required to optimise and test the code written so far. The code was investigated for any nested loops or repeated codes.
+
+### Docstrings
+
+- Docstrings were added to each method using the following code (example shown):
+
+```python
+	        '''
+        This method allows the 'accept cookies' button to be pressed
+        
+        parameters
+        ----------
+        xpath: str
+            The xpath of locating the accept cookies button
+        '''
+```
+- Docstrings give an explanation of the methods and can be called using 'help' unlike comments.
+	
+### unit tests
+
+- All methods were tested using 'unit tests', this ensured the methods were running correctly. Below is one of the tests that were run:
+
+```python
+    def test_properties(self):
+        self.bot.accept_cookies(xpath = '//button[@class="btn btn-level1 accept-all-cookies"]')
+        self.bot.keys_search(text = 'nike caps')
+        self.bot.product_container(xpath = '//div[@id="productListRightContainer"]')
+```
+
+
+
 	
 
