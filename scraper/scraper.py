@@ -1,3 +1,4 @@
+from importlib.resources import path
 from lib2to3.pgen2 import driver
 from logging import exception
 from time import time
@@ -13,7 +14,7 @@ from selenium.common.exceptions import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 from typing import Union, Optional
-
+import urllib.request
 
 
 class Scraper:
@@ -95,8 +96,6 @@ class Scraper:
     def product_container(self, xpath: str = '//div[@id="productListRightContainer"]'):
         return self.driver.find_element(By.XPATH,xpath)
 
-
-    # bellow next button code
     def next_button(self, xpath: str = '//a[@rel="next"]'):
         # -> Optional[webdriver.element]
         '''
@@ -118,9 +117,94 @@ class Scraper:
             return find_next_button
         except TimeoutException:
             print ('No next button found')
+
+    def image_download(self, url, file_name, file_path):
+        '''
+        This method downloads and individual image
+
+        parameters
+        ----------
+        xpath: str
+            The xpath of locating the link to an image
+
+        Returns    
+        -------
+        Image: png
+            Represents downloaded image
+
+        '''
+        self.driver.get(url)
+        time.sleep(1)
+        try:
+            imageLinks = self.driver.find_element(By.XPATH, '//div[@class="owl-item active"]')
+            lol_links = imageLinks.find_element(By.TAG_NAME, 'img')
+            final_links = lol_links.get_attribute('src')
+            time.sleep(1)
+            self.driver.get(final_links)
+            path_L = file_path + file_name + '.png'
+            opener = urllib.request.build_opener()
+            opener.addheaders = [('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36')]
+            urllib.request.install_opener(opener)
+            urllib.request.urlretrieve(
+            final_links, path_L)
+        except NotImplementedError:
+            pass 
     
-    # bellow is for filterting by size 'm' but probabaly has the same issue as gender one
+    
+    def image_download_2(self, file_name, file_path, url):
+        '''
+        This method is only used together with mutiple_image_2 method
+
+        parameters
+        ----------
+        Image: png
+            Represents downloaded images
+        '''
+        try:
+            path_L = file_path + file_name + '.png'
+            opener = urllib.request.build_opener()
+            opener.addheaders = [('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36')]
+            urllib.request.install_opener(opener)
+            urllib.request.urlretrieve(
+            url, path_L)
+        except NotImplementedError:
+            pass 
+    
+    def multiple_image_2(self, list, file_path):
+        '''
+        This method downloads multiple images
+
+        parameters
+        ----------
+        xpath: str
+            
+        Returns    
+        -------
+        Image: png
+            Represents downloaded images
+        '''
+        for i in range(0, len(list)):
+            name = str(i)
+            path_k = file_path + name
+            url_name = list[i]
+            self.image_download_2(url=url_name, file_name=name, file_path=path_k)
+     
+   
     def filter_m(self, xpath: str = '//a[@class="filterlink"]'):
+        # -> Union[webdriver.element, None]
+        '''
+        This method filters for 'medium' size
+
+        parameters
+        ----------
+        xpath: str
+            The xpath of filtering for medium size
+
+        Returns    
+        -------
+        Optional[webdriver.element]
+
+        '''
         try:
             time.sleep(1)
             filter_search = WebDriverWait(self.driver, 6).until(EC.presence_of_element_located((By.XPATH,xpath)))
@@ -137,4 +221,6 @@ if __name__ == '__main__':
     bot.accept_cookies()
     bot.next_button()
     bot.find_search()
-    bot.product_container()        
+    bot.product_container()
+    bot.image_download()
+    bot.multiple_image_2()      
