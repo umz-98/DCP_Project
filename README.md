@@ -57,7 +57,7 @@ f.close()"""
 - Docstrings were added to each method using the following code (example shown):
 
 ```python
-	        '''
+	    '''
         This method allows the 'accept cookies' button to be pressed
         
         parameters
@@ -73,10 +73,13 @@ f.close()"""
 - All methods were tested using 'unit tests', this ensured the methods were running correctly. Below is one of the tests that were run:
 
 ```python
-    def test_properties(self):
-        self.bot.accept_cookies(xpath = '//button[@class="btn btn-level1 accept-all-cookies"]')
-        self.bot.keys_search(text = 'nike caps')
-        self.bot.product_container(xpath = '//div[@id="productListRightContainer"]')
+    def test_accept_cookies(self):
+        expected_value = True
+        actual_value= self.bot.accept_cookies(xpath = '//button[@class="btn btn-level1 accept-all-cookies"]')
+        if actual_value == None:
+            actual_value = True
+        self.bot.driver.find_element(By.XPATH, '//a[@class="logo"]' )
+        self.assertEqual(expected_value, actual_value)
 ```
 
 
