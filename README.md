@@ -57,14 +57,14 @@ f.close()"""
 - Docstrings were added to each method using the following code (example shown):
 
 ```python
-	    '''
-        This method allows the 'accept cookies' button to be pressed
+'''
+This method allows the 'accept cookies' button to be pressed
         
-        parameters
-        ----------
-        xpath: str
-            The xpath of locating the accept cookies button
-        '''
+parameters
+----------
+xpath: str
+The xpath of locating the accept cookies button
+'''
 ```
 - Docstrings give an explanation of the methods and can be called using 'help' unlike comments.
 	
@@ -82,7 +82,34 @@ f.close()"""
         self.assertEqual(expected_value, actual_value)
 ```
 
+## Milestone 5
 
+- In this milestone the scraped data was orderly stored and uploaded to RDS/S3.
+
+### Raw data
+
+- Raw data was uploaded to an S3 bucket that was created in AWS. The raw data included images and any json files. The data was uploaded using boto3 via the following code:
+
+```python
+import boto3
+s3_client = boto3.client('s3')
+response = s3_client.upload_file('/Users/FKhan/Downloads/miniconda3/DCP_Project/raw_data/Nike caps/Nike_Hat_15990063_355655.png', 'dcp1', 'Nike_Hat_15990063_355655.png')
+```
+- To upload multiple images at once a library named 'glob' was utilised.
+
+```python
+import glob
+png_files = glob.glob('/Users/FKhan/Downloads/miniconda3/DCP_Project/raw_data/Nike caps/*.png')
+```
+
+### Tabular data
+
+- The collected data was visualised as a table using pandas and uploaded to sql.
+
+- A RDS database was created on AWS which was connected to VScode/sql using it's endpoint. The database was also connected to pgadmin for analysis purposes. Following this the tabular data was uploaded using 'sqalchemy' and 'psycopg2'. 
+ 
+
+ 
 
 	
 
