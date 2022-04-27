@@ -2,6 +2,7 @@ from importlib.resources import path
 from lib2to3.pgen2 import driver
 from logging import exception
 from time import time
+from typing_extensions import Self
 # from typing_extensions import Self
 from urllib import request
 from selenium import webdriver
@@ -202,7 +203,7 @@ class Scraper:
 
         Returns    
         -------
-        Optional[webdriver.element]
+        Union[webdriver.element, None]
 
         '''
         try:
@@ -213,8 +214,40 @@ class Scraper:
         except TimeoutException:
             print ('no filted added')
             return None
-     
 
+    def clicker(self, xpath: str = '//i[@class="fa fa-angle-down"]'):
+        # -> Union[webdriver.element, None]
+        '''
+        This method extends the product information
+
+        parameters
+        ----------
+        xpath: str
+            The xpath of extending product information
+
+        Returns    
+        -------
+        Union[webdriver.element, None]
+
+        '''
+        try:
+            clicker = WebDriverWait(self.driver, 6).until(EC.presence_of_element_located((By.XPATH,xpath)))
+            clicker.click()
+            return clicker
+        except TimeoutException:
+            print ('no filted added')
+            return None
+    
+    def product_click(self, url):
+        '''
+        This method goes to any url added
+
+        parameters
+        ----------
+        url: str
+            The url of any given link
+        '''
+        self.driver.get(url)
 
 if __name__ == '__main__':
     bot = Scraper()
@@ -223,4 +256,5 @@ if __name__ == '__main__':
     bot.find_search()
     bot.product_container()
     bot.image_download()
-    bot.multiple_image_2()      
+    bot.multiple_image_2()    
+    bot.clicker()  
