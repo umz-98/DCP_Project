@@ -49,6 +49,13 @@ class testScraper(unittest.TestCase):
         actual_value = self.bot.filter_m(xpath= '//a[@class="filterlink"]')
         self.assertTrue(expected_value, actual_value)
 
+    def test_clicker(self):
+        expected_value = str
+        self.bot.accept_cookies(xpath = '//button[@class="btn btn-level1 accept-all-cookies"]')
+        self.bot.product_click(url= 'https://www.jdsports.co.uk/product/blue-nike-tech-fleece-full-zip-hoodie/16475382/')
+        actual_value =  self.bot.clicker(xpath= '//i[@class="fa fa-angle-down"]')
+        self.assertTrue(expected_value, actual_value)
+
     # def tearDown(self) -> None:
     #     return super().tearDown()    
     # def test_init(self):
