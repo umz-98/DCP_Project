@@ -22,7 +22,7 @@ class testScraper(unittest.TestCase):
     def test_properties(self):
         expected_vlaue = str
         self.bot.accept_cookies(xpath = '//button[@class="btn btn-level1 accept-all-cookies"]')
-        actual_value = self.bot.keys_search(text = 'nike caps')
+        self.bot.keys_search(text = 'nike caps')
         actual_value = self.bot.product_container(xpath = '//div[@id="productListRightContainer"]')
         self.assertTrue(expected_vlaue, actual_value)
 
