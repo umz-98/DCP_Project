@@ -2,16 +2,19 @@ from importlib.resources import path
 from lib2to3.pgen2 import driver
 from logging import exception
 from time import time
-from typing_extensions import Self
-# from typing_extensions import Self
 from urllib import request
+from requests import options
+# from click import option
 from selenium import webdriver
 from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import WebDriverException
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 from typing import Union, Optional
@@ -33,10 +36,19 @@ class Scraper:
         This driver is the webdriver object
     '''
     def __init__(self, url: str = 'https://www.jdsports.co.uk'):
-        self.driver = Chrome(ChromeDriverManager().install())
+        options = Options()
+        options.add_argument('--user-agent=chrome:headless:userAgent=Mozilla/5.0 (X11\\; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36')
+        options.add_argument('--window-size=1920,1080')
+        options.add_argument("disable-infobars")
+        options.add_argument("--disable-extensions")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--no-sandbox")
+        options.add_argument('--headless')
+        options.add_argument('--disable-gpu')
+        # options.add_argument('--remote-debugging-port=9222')
+        self.driver = Chrome(ChromeDriverManager().install(), options=options)
         self.driver.get(url)
-        # self.driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
-    
+
     def accept_cookies(self, xpath: str = '//button[@class="btn btn-level1 accept-all-cookies"]'):
         '''
         This method allows the 'accept cookies' button to be pressed
@@ -52,6 +64,11 @@ class Scraper:
             self.driver.find_element(By.XPATH,xpath).click()
         except TimeoutException:
             print ('No cookies found')
+        except NoSuchElementException:
+            print('no such element error')
+        except WebDriverException:
+            print ('webdriverexception')    
+
     def find_search(self, xpath: str = '//input[@type="text"]'): 
          # -> Union[webdriver.element, None]
         '''
@@ -74,6 +91,10 @@ class Scraper:
         except TimeoutException:
             print ('No search found')
             return None
+        except NoSuchElementException:
+            print('no such element error')
+        except WebDriverException:
+            print ('webdriverexception')      
     def keys_search(self, text:str) -> None:
         '''
         This method searches the webpage using whatevever keys
@@ -95,7 +116,15 @@ class Scraper:
         else:
              raise Exception('Not working')
     def product_container(self, xpath: str = '//div[@id="productListRightContainer"]'):
-        return self.driver.find_element(By.XPATH,xpath)
+        try:
+            return self.driver.find_element(By.XPATH,xpath)
+        except TimeoutException:
+            print ('No search found')
+            return None
+        except NoSuchElementException:
+            print('no such element error')
+        except WebDriverException:
+            print ('webdriverexception')      
 
     def next_button(self, xpath: str = '//a[@rel="next"]'):
         # -> Optional[webdriver.element]
@@ -118,6 +147,10 @@ class Scraper:
             return find_next_button
         except TimeoutException:
             print ('No next button found')
+        except NoSuchElementException:
+            print('no such element error')
+        except WebDriverException:
+            print ('webdriverexception')    
 
     def image_download(self, url, file_name, file_path):
         '''
@@ -214,6 +247,10 @@ class Scraper:
         except TimeoutException:
             print ('no filted added')
             return None
+        except NoSuchElementException:
+            print('no such element error')
+        except WebDriverException:
+            print ('webdriverexception')    
 
     def clicker(self, xpath: str = '//i[@class="fa fa-angle-down"]'):
         # -> Union[webdriver.element, None]
@@ -237,6 +274,10 @@ class Scraper:
         except TimeoutException:
             print ('no filted added')
             return None
+        except NoSuchElementException:
+            print('no such element error')
+        except WebDriverException:
+            print ('webdriverexception')    
     
     def product_click(self, url):
         '''
@@ -247,7 +288,7 @@ class Scraper:
         url: str
             The url of any given link
         '''
-        self.driver.get(url)
+        self.driver.get(url)    
 
 if __name__ == '__main__':
     bot = Scraper()
