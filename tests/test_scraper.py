@@ -56,10 +56,5 @@ class testScraper(unittest.TestCase):
         actual_value =  self.bot.clicker(xpath= '//i[@class="fa fa-angle-down"]')
         self.assertTrue(expected_value, actual_value)
 
-    # def tearDown(self) -> None:
-    #     return super().tearDown()    
-    # def test_init(self):
-    #     pass
-
 if __name__ == '__main__':
     unittest.main()    

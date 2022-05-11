@@ -1,17 +1,17 @@
 bs4 
 selenium
 requests
-time
-urllib 
-boto3
-urllib.requests
-sqalchemy
-psycopg2-binary
-pandas
-json
-uuid
-typing
-logging
-lib2to3.pgen2
+# time
+# urllib 
+# boto3
+# urllib.request
+# sqalchemy
+# psycopg2-binary
+# pandas
+# json
+# uuid
+# typing
+# logging
+# lib2to3.pgen2
 webdriver-manager
-mportlib.resources
+# mportlib.resources
