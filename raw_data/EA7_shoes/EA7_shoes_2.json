@@ -1,0 +1,80 @@
+{
+    "link": [
+        "https://www.jdsports.co.uk/product/black-emporio-armani-ea7-crusher-reflex/16231330/",
+        "https://www.jdsports.co.uk/product/grey-emporio-armani-ea7-ultimate-20/16476025/",
+        "https://www.jdsports.co.uk/product/grey-emporio-armani-ea7-crusher-reflex/16472956/",
+        "https://www.jdsports.co.uk/product/black-emporio-armani-ea7-bandw-mesh-run/1286878/",
+        "https://www.jdsports.co.uk/product/blue-emporio-armani-ea7-bandw-vintage/16453199/",
+        "https://www.jdsports.co.uk/product/white-emporio-armani-ea7-bandw-vintage/16453553/",
+        "https://www.jdsports.co.uk/product/blue-emporio-armani-ea7-seaworld-slides/15981742/",
+        "https://www.jdsports.co.uk/product/white-emporio-armani-ea7-bandw-mesh-run/16453816/",
+        "https://www.jdsports.co.uk/product/blue-emporio-armani-ea7-crusher-knit/16230736/",
+        "https://www.jdsports.co.uk/product/green-emporio-armani-ea7-bandw-mesh-run/16022385/",
+        "https://www.jdsports.co.uk/product/black-emporio-armani-ea7-bandw-laces/16226000/"
+    ],
+    "price": [
+        "\u00a3150.00",
+        "\u00a3165.00",
+        "\u00a3155.00",
+        "\u00a3160.00",
+        "\u00a3150.00",
+        "\u00a3150.00",
+        "\u00a335.00",
+        "\u00a3165.00",
+        "\u00a3160.00",
+        "\u00a3165.00",
+        "Now \u00a3125.00"
+    ],
+    "name": [
+        "Emporio Armani EA7 Crusher Reflex",
+        "Emporio Armani EA7 Ultimate 2.0",
+        "Emporio Armani EA7 Crusher Reflex",
+        "Emporio Armani EA7 B&W Mesh Run",
+        "Emporio Armani EA7 B&W Vintage",
+        "Emporio Armani EA7 B&W Vintage",
+        "Emporio Armani EA7 Seaworld Slides",
+        "Emporio Armani EA7 B&W Mesh Run",
+        "Emporio Armani EA7 Crusher Knit",
+        "Emporio Armani EA7 B&W Mesh Run",
+        "Emporio Armani EA7 B&W Laces"
+    ],
+    "id": [
+        "Product Code: 16231330/451086",
+        "Product Code: 16476025/507927",
+        "Product Code: 16472956/507934",
+        "Product Code: 1286878/115537",
+        "Product Code: 16453199/507949",
+        "Product Code: 16453553/507946",
+        "Product Code: 15981742/345468",
+        "Product Code: 16453816/507873",
+        "Product Code: 16230736/451089",
+        "Product Code: 16022385/365725",
+        "Product Code: 16226000/456480"
+    ],
+    "UUID": [
+        "82c5675d111d4b5398edba3282f91873",
+        "557d5917b6cc4b019df0df39c788b8b0",
+        "6098b6c3eb014bb5b09ad3e464e769ff",
+        "02b746e0236f4159aedc51662073623c",
+        "2053b0e2b1ef4c46805f0fa0687d39c8",
+        "3d924d8bbf064c5f981f60a1cda3c968",
+        "186dcec6a3db44949c22b589372a69b1",
+        "962746e6aba14d589777210d2aa50b48",
+        "8067635a8343431ebaf498ac23707a9d",
+        "46acc0d66d1240d9a33682066997fbbf",
+        "27816c23cf014e7db5d56ff87edbc2ed"
+    ],
+    "imagelinks_1": [
+        "https://i8.amplience.net/t/jpl/jd_product_list?plu=jd_451086_plc&qlt=92&w=363&h=463&v=1&fmt=auto",
+        "https://i8.amplience.net/t/jpl/jd_product_list?plu=jd_507927_plc&qlt=92&w=363&h=463&v=1&fmt=auto",
+        "https://i8.amplience.net/t/jpl/jd_product_list?plu=jd_507934_plc&qlt=92&w=363&h=463&v=1&fmt=auto",
+        "https://i8.amplience.net/t/jpl/jd_product_list?plu=jd_115537_plc&qlt=92&w=363&h=463&v=1&fmt=auto",
+        "https://i8.amplience.net/t/jpl/jd_product_list?plu=jd_507949_plc&qlt=92&w=363&h=463&v=1&fmt=auto",
+        "https://i8.amplience.net/t/jpl/jd_product_list?plu=jd_507946_plc&qlt=92&w=363&h=463&v=1&fmt=auto",
+        "https://i8.amplience.net/t/jpl/jd_product_list?plu=jd_345468_plc&qlt=92&w=363&h=463&v=1&fmt=auto",
+        "https://i8.amplience.net/t/jpl/jd_product_list?plu=jd_507873_plc&qlt=92&w=363&h=463&v=1&fmt=auto",
+        "https://i8.amplience.net/t/jpl/jd_product_list?plu=jd_451089_plc&qlt=92&w=363&h=463&v=1&fmt=auto",
+        "https://i8.amplience.net/t/jpl/jd_product_list?plu=jd_365725_plc&qlt=92&w=363&h=463&v=1&fmt=auto",
+        "https://i8.amplience.net/t/jpl/jd_product_list?plu=jd_456480_plc&qlt=92&exclusive=0&wid=363&hei=463&v=1&fmt=auto"
+    ]
+}
