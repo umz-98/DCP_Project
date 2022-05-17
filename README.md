@@ -1,6 +1,6 @@
 # Data collection pipeline project
 
-## Milestone 1-2 - (Make sure to include your reasoning for choosing your website, the technologies you've used etc.)
+## Milestone 1-2 
 
 - In this millstone a scraper class was created which includes the necessary methods to navigate the website such as: accept cookies and search. Furthermore, the scraper class also includes additional methods that could be of use e.g. scrolling the webpage and going to next webpage on a product list.
 
@@ -15,7 +15,7 @@
 ```python
 """pd.DataFrame()"""
 ```
-## Milestone 3 (Talk about the methods you have added and the reasoning behind your approach.)
+## Milestone 3 
 
 -Now that the navigation of the website was achieved through the previous milestone, the tasks in this milestone followed on.  Firstly, the ID of each product was located and its path was noted than the UUID library was used to generate UUID’s using the code below:
 	
@@ -107,6 +107,38 @@ png_files = glob.glob('/Users/FKhan/Downloads/miniconda3/DCP_Project/raw_data/Ni
 - The collected data was visualised as a table using pandas and uploaded to sql.
 
 - A RDS database was created on AWS which was connected to VScode/sql using it's endpoint. The database was also connected to pgadmin for analysis purposes. Following this the tabular data was uploaded using 'sqalchemy' and 'psycopg2'. 
+
+## Milestones 6 and 7
+
+-To make the scraping more user friendly a code was added to avoid rescraping data. Below is an example where the scraper will avoid rescraping products with ID's that are present in the emperior armani (EA7) table.
+
+```python
+df = pd.read_sql('EA7_shoes', engine)
+id_scraper = list(df['id'])
+image_scraper = list(df['imagelinks_1'])
+```
+
+### Headless
+
+- The scraper was run in headless mode where a few arguments were added at the initialisation step. The arguments that were added are shown below:
+    
+```python
+options = Options()
+options.add_argument('--user-agent=chrome:headless:userAgent=Mozilla/5.0 (X11\\; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36')
+options.add_argument('--window-size=1920,1080')
+options.add_argument("disable-infobars")
+options.add_argument("--disable-extensions")
+options.add_argument("--disable-dev-shm-usage")
+options.add_argument("--no-sandbox")
+options.add_argument('--headless')
+options.add_argument('--disable-gpu')
+options=options
+```
+
+### Docker
+
+- A dockerfile together with a txt file were created. These files would allow docker to run the scraper in an ec2 instance once a docker image has been built.
+- The whole project repository was sent to the ec2 instance where a docker image was built this image was than run.
  
 
  
