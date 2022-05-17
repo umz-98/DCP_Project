@@ -36,17 +36,18 @@ class Scraper:
         This driver is the webdriver object
     '''
     def __init__(self, url: str = 'https://www.jdsports.co.uk'):
-        options = Options()
-        options.add_argument('--user-agent=chrome:headless:userAgent=Mozilla/5.0 (X11\\; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36')
-        options.add_argument('--window-size=1920,1080')
-        options.add_argument("disable-infobars")
-        options.add_argument("--disable-extensions")
-        options.add_argument("--disable-dev-shm-usage")
-        options.add_argument("--no-sandbox")
-        options.add_argument('--headless')
-        options.add_argument('--disable-gpu')
+        # options = Options()
+        # options.add_argument('--user-agent=chrome:headless:userAgent=Mozilla/5.0 (X11\\; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36')
+        # options.add_argument('--window-size=1920,1080')
+        # options.add_argument("disable-infobars")
+        # options.add_argument("--disable-extensions")
+        # options.add_argument("--disable-dev-shm-usage")
+        # options.add_argument("--no-sandbox")
+        # options.add_argument('--headless')
+        # options.add_argument('--disable-gpu')
         # options.add_argument('--remote-debugging-port=9222')
-        self.driver = Chrome(ChromeDriverManager().install(), options=options)
+        # , options=options
+        self.driver = Chrome(ChromeDriverManager().install())
         self.driver.get(url)
 
     def accept_cookies(self, xpath: str = '//button[@class="btn btn-level1 accept-all-cookies"]'):
@@ -181,8 +182,12 @@ class Scraper:
             urllib.request.install_opener(opener)
             urllib.request.urlretrieve(
             final_links, path_L)
-        except NotImplementedError:
-            pass 
+        except TimeoutException:
+            print ('No image found')
+        except NoSuchElementException:
+            print('no such element error')
+        except WebDriverException:
+            print ('webdriverexception') 
     
     
     def image_download_2(self, file_name, file_path, url):
@@ -201,8 +206,12 @@ class Scraper:
             urllib.request.install_opener(opener)
             urllib.request.urlretrieve(
             url, path_L)
-        except NotImplementedError:
-            pass 
+        except TimeoutException:
+            print ('No image found')
+        except NoSuchElementException:
+            print('no such element error')
+        except WebDriverException:
+            print ('webdriverexception') 
     
     def multiple_image_2(self, list, file_path):
         '''
@@ -217,11 +226,20 @@ class Scraper:
         Image: png
             Represents downloaded images
         '''
-        for i in range(0, len(list)):
-            name = str(i)
-            path_k = file_path + name
-            url_name = list[i]
-            self.image_download_2(url=url_name, file_name=name, file_path=path_k)
+        try:
+            for i in range(0, len(list)):
+                name = str(i)
+                path_k = file_path + name
+                url_name = list[i]
+                self.image_download_2(url=url_name, file_name=name, file_path=path_k)
+        except TimeoutException:
+            print ('No image found')
+            return None
+        except NoSuchElementException:
+            print('no such element error')
+        except WebDriverException:
+            print ('webdriverexception') 
+
      
    
     def filter_m(self, xpath: str = '//a[@class="filterlink"]'):
@@ -245,7 +263,7 @@ class Scraper:
             filter_search.click()
             return filter_search
         except TimeoutException:
-            print ('no filted added')
+            print ('no filter added')
             return None
         except NoSuchElementException:
             print('no such element error')
@@ -272,7 +290,7 @@ class Scraper:
             clicker.click()
             return clicker
         except TimeoutException:
-            print ('no filted added')
+            print ('no filter added')
             return None
         except NoSuchElementException:
             print('no such element error')
@@ -288,7 +306,14 @@ class Scraper:
         url: str
             The url of any given link
         '''
-        self.driver.get(url)    
+        try:
+            self.driver.get(url)    
+        except TimeoutException:
+            print ('No url found')
+        except NoSuchElementException:
+            print('no such element error')
+        except WebDriverException:
+            print ('webdriverexception') 
 
 if __name__ == '__main__':
     bot = Scraper()
