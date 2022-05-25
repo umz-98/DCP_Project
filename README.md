@@ -139,6 +139,52 @@ options=options
 
 - A dockerfile together with a txt file were created. These files would allow docker to run the scraper in an ec2 instance once a docker image has been built.
 - The whole project repository was sent to the ec2 instance where a docker image was built this image was than run.
+
+## Milestone 8
+
+- The scraper was running how it's supposed to therefore in the following steps prometheus and grafana were setup.
+
+### Prometheus
+
+Prometheus is a software that allows for real-time monitoring of metrics and alerts.
+
+- Initially a prometheus.yml file was set up to configure for prometheus where the host was set to 9090.
+
+- The host connection was established by changing the security inbounds rules on the EC2 instance (including 9090) and than searching for EC2_ipaddress:9090
+
+- To allow prometheus to monitor docker a docker job was added to the yaml file (code seen below) 
+
+```python
+  - job_name: 'docker'
+        # metrics_path defaults to '/metrics' 
+        # scheme defaults to 'http'
+    static_configs:
+      - targets: ['172.17.0.1:9323']
+      # metrics added from our daemon.json file
+```
+
+- The deamon file was also edited by changing the ip address to 0.0.0.0 which would allow any connection.
+
+- The docker connection was observed and the metrics were investigated
+
+### Grafana
+
+Grafana was utilized to allow the metrics to be visualized, hence to view the analytics of the scraping.
+
+- Grafana was downloaded and connected in the terminal using the following commands:
+'curl -O https://dl.grafana.com/enterprise/main/grafana-enterprise-9.0.0-1fcb2f45pre.darwin-amd64.tar.gz
+tar -zxvf grafana-enterprise-9.0.0-1fcb2f45pre.darwin-amd64.tar.gz
+./bin/grafana-server web'
+
+- Grafana was connected to prometheus by adding a prometheus data source with the following URL: EC2_ipaddress:9090.
+
+-Various metrics were visualized and a dashboard was created.
+
+
+
+
+
+
  
 
  
