@@ -172,9 +172,10 @@ Prometheus is a software that allows for real-time monitoring of metrics and ale
 Grafana was utilized to allow the metrics to be visualized, hence to view the analytics of the scraping.
 
 - Grafana was downloaded and connected in the terminal using the following commands:
-'curl -O https://dl.grafana.com/enterprise/main/grafana-enterprise-9.0.0-1fcb2f45pre.darwin-amd64.tar.gz
-tar -zxvf grafana-enterprise-9.0.0-1fcb2f45pre.darwin-amd64.tar.gz
-./bin/grafana-server web'
+
+'curl -O https://dl.grafana.com/enterprise/main/grafana-enterprise-9.0.0-1fcb2f45pre.darwin-amd64.tar.gz'
+'tar -zxvf grafana-enterprise-9.0.0-1fcb2f45pre.darwin-amd64.tar.gz'
+'./bin/grafana-server web'
 
 - Grafana was connected to prometheus by adding a prometheus data source with the following URL: EC2_ipaddress:9090.
 
