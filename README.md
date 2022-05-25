@@ -179,7 +179,7 @@ Grafana was utilized to allow the metrics to be visualized, hence to view the an
 
 - Grafana was connected to prometheus by adding a prometheus data source with the following URL: EC2_ipaddress:9090.
 
--Various metrics were visualized and a dashboard was created.
+- Various metrics were visualized and a dashboard was created.
 
 
 
