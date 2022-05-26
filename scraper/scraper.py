@@ -4,7 +4,6 @@ from logging import exception
 from time import time
 from urllib import request
 from requests import options
-# from click import option
 from selenium import webdriver
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
@@ -36,18 +35,18 @@ class Scraper:
         This driver is the webdriver object
     '''
     def __init__(self, url: str = 'https://www.jdsports.co.uk'):
-        # options = Options()
-        # options.add_argument('--user-agent=chrome:headless:userAgent=Mozilla/5.0 (X11\\; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36')
-        # options.add_argument('--window-size=1920,1080')
-        # options.add_argument("disable-infobars")
-        # options.add_argument("--disable-extensions")
-        # options.add_argument("--disable-dev-shm-usage")
-        # options.add_argument("--no-sandbox")
-        # options.add_argument('--headless')
-        # options.add_argument('--disable-gpu')
+        options = Options()
+        options.add_argument('--user-agent=chrome:headless:userAgent=Mozilla/5.0 (X11\\; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36')
+        options.add_argument('--window-size=1920,1080')
+        options.add_argument("disable-infobars")
+        options.add_argument("--disable-extensions")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--no-sandbox")
+        options.add_argument('--headless')
+        options.add_argument('--disable-gpu')
         # options.add_argument('--remote-debugging-port=9222')
         # , options=options
-        self.driver = Chrome(ChromeDriverManager().install())
+        self.driver = Chrome(ChromeDriverManager().install(), options=options)
         self.driver.get(url)
 
     def accept_cookies(self, xpath: str = '//button[@class="btn btn-level1 accept-all-cookies"]'):
@@ -323,4 +322,4 @@ if __name__ == '__main__':
     bot.product_container()
     bot.image_download()
     bot.multiple_image_2()    
-    bot.clicker()  
+    bot.clicker()
