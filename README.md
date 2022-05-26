@@ -181,6 +181,22 @@ Grafana was utilized to allow the metrics to be visualized, hence to view the an
 
 - Various metrics were visualized and a dashboard was created.
 
+## Milestone 9
+
+### CI/CD
+
+- Github secrets were setup to be configured with the .yml file and the file was added to the workflows via the actions tab in github. The fille would create a docker image and send it to the dockehub account.
+
+- Cron jobs were setup in the ec2 instance to alllow for regular running of the scraper.
+
+Thank you for reading about this project
+
+
+
+
+
+
+
 
 
 
