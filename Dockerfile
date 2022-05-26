@@ -5,6 +5,6 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
     && apt-get install -y google-chrome-stable
 
 COPY . . 
-RUN pip install -r requirements.txt
-CMD ["python", "scraper/scraper.py"]
+RUN pip install -r requirements_2.txt
+CMD ["python", "scraper/ec2_scraper.py"]
 
