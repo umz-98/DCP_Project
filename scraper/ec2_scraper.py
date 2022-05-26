@@ -27,7 +27,7 @@ import glob
 from uuid import UUID
 import uuid
 
-# class ec2_scraper:
+
 options = Options()
 options.add_argument('--user-agent=chrome:headless:userAgent=Mozilla/5.0 (X11\\; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36')
 options.add_argument('--window-size=1920,1080')
